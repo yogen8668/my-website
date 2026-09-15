@@ -1,0 +1,47 @@
+# ---------------------------------------------------------------------------
+# PIN EVERYTHING (§65, F-10).
+#
+# Results depend on packaged DATA files, not only on code: a patch release of
+# chemicals that corrects one acentric factor or adds a kij pair changes
+# numbers with no code change here. So chemicals/fluids are pinned with the
+# same weight as thermo, and the golden regression suite gates every bump.
+#
+# !! ACTION REQUIRED !!
+# These versions are PLACEHOLDERS chosen as plausible current releases. They
+# have NOT been verified against your install, and the golden cases must be
+# frozen against whatever is actually installed. Before first deploy, run:
+#
+#     python -c "import thermo,chemicals,fluids,numpy,scipy,sys; \
+#       print(thermo.__version__, chemicals.__version__, fluids.__version__, \
+#             numpy.__version__, scipy.__version__, sys.version)"
+#
+# and replace the pins below with the exact output.
+# ---------------------------------------------------------------------------
+
+# --- calculation engine (source of truth) ---
+thermo==0.4.2
+chemicals==1.3.1
+fluids==1.0.26
+numpy==1.26.4
+scipy==1.13.1
+
+# --- API ---
+fastapi==0.115.6
+pydantic==2.10.4
+pydantic-settings==2.7.0
+uvicorn[standard]==0.34.0
+gunicorn==23.0.0
+
+# --- database ---
+SQLAlchemy==2.0.36
+alembic==1.14.0
+psycopg[binary]==3.2.3
+
+# --- export (§60) ---
+openpyxl==3.1.5
+reportlab==4.2.5
+
+# --- test ---
+pytest==8.3.4
+pytest-asyncio==0.25.0
+httpx==0.28.1
