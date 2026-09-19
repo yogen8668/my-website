@@ -47,7 +47,7 @@ async def get_mixture(mixture_id: str, db: Session = Depends(get_db)) -> Mixture
     return MixtureResponse(**record)
 
 
-@router.delete("/{mixture_id}", status_code=204, summary="Delete one")
+@router.delete("/{mixture_id}", status_code=200, summary="Delete one")
 async def delete_mixture(mixture_id: str, db: Session = Depends(get_db)) -> None:
     if not repo.delete_mixture(db, mixture_id):
         raise NotFoundError(
