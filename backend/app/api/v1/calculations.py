@@ -73,7 +73,7 @@ async def get_calculation(
     return CalculationResponse(**record)
 
 
-@router.delete("/{calculation_id}", status_code=204, summary="Delete one")
+@router.delete("/{calculation_id}", status_code=200, summary="Delete one")
 async def delete_calculation(calculation_id: str, db: Session = Depends(get_db)) -> None:
     if not repo.delete_calculation(db, calculation_id):
         raise NotFoundError(
